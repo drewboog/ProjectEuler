@@ -1,0 +1,40 @@
+function problem18and67
+
+clc
+fclose all;
+format long g
+
+%fileName = 'C:\dev\projectEuler\prob18.txt';
+fileName = 'C:\dev\projectEuler\p067_triangle.txt';
+
+fid = fopen(fileName);
+i = 0;
+while ~feof(fid) ;
+    tline=fgets(fid);
+    i = i+1;
+    data{i} = str2num(tline);
+end
+
+N = i;
+fclose all;
+
+dataRow2 = data{N};
+
+for i = 1:N-1
+    k = N-i;
+    dataRow = [];
+    dataRow = data{k};
+    M = length(dataRow);
+    
+    for j = 1:M
+        v1 = dataRow(j)+dataRow2(j);
+        v2 = dataRow(j)+dataRow2(j+1);
+        vmax = max(v1,v2);
+        dataRow(j) = vmax;
+    end
+   
+    dataRow2 = dataRow;
+end
+
+disp(dataRow2(1))
+end
