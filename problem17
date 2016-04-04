@@ -1,0 +1,78 @@
+function problem17
+      
+clc
+dig{1} = 'one';
+dig{2} = 'two';
+dig{3} = 'three';
+dig{4} = 'four';
+dig{5} = 'five';
+dig{6} = 'six';
+dig{7} = 'seven';
+dig{8} = 'eight';
+dig{9} = 'nine';
+dig{10} = 'ten';             
+dig{11} = 'eleven';
+dig{12} = 'twelve';
+dig{13} = 'thirteen';
+dig{14} = 'fourteen';
+dig{15} = 'fifteen';
+dig{16} = 'sixteen';
+dig{17} = 'seventeen';
+dig{18} = 'eighteen';
+dig{19} = 'nineteen';
+dig{20} = 'twenty';
+dig{30} = 'thirty';
+dig{40} = 'forty';
+dig{50} = 'fifty';
+dig{60} = 'sixty';
+dig{70} = 'seventy';
+dig{80} = 'eighty';
+dig{90} = 'ninety';
+dig{100} = 'hundred';
+dig{1000} = 'thousand';
+
+countsum = 0;
+        
+for i = 1:1000
+
+        str = '';
+        thouDig = floor(i/1000);
+        hunDig = floor((i-thouDig*1000)/100);
+        tenDig = floor((i-hunDig*100)/10);
+        
+        if thouDig>0
+           str = [dig(1)];
+        end
+        
+        if hunDig > 0
+            str = dig(hunDig);
+            str = [str , dig(100)];
+            
+            if (i-hunDig*100)>0
+                str = [str , 'and'];
+            end
+        end
+        
+        if (i-hunDig*100)> 19 && tenDig>0
+            tenStr = dig(tenDig*10);
+            str = [str , tenStr];
+        end
+        
+        if (i-hunDig*100) == 10
+            str = [str , dig(10)];
+        end
+            
+        if (i-hunDig*100-tenDig*10)>0
+            if tenDig*10 > 19
+                str = [str , dig(i-hunDig*100-tenDig*10)];
+            else
+                str = [str , dig(i-hunDig*100)];
+            end
+        end
+        str2 = strjoin(str);
+        count=sum(str2~=' ');
+        countsum = countsum+count;
+        disp(countsum)
+    
+end
+end
