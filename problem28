@@ -1,0 +1,22 @@
+function Problem28
+sumDiag = 1;
+i = 1;
+jumpCnt = 2;
+numJumps = 0;
+iCnt = 0;
+while (jumpCnt+1) <= 1001
+    i = i+1;
+    iCnt = iCnt+1;
+    if iCnt>=jumpCnt
+        sumDiag = sumDiag+i;
+        iCnt = 0;
+        numJumps = numJumps+1;
+    end
+    if numJumps>=4
+        jumpCnt = jumpCnt+2;
+        numJumps = 0;
+    end
+    
+end
+disp(sumDiag)
+end
