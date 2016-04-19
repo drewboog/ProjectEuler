@@ -1,0 +1,42 @@
+function Problem22
+
+fileName = 'C:\Users\hazlett\Desktop\p022_names.txt';
+fid = fopen(fileName);
+tline=fgets(fid);
+coms = strfind( tline , ',' );
+N = length(coms);
+strIdx = 2;
+maxLen = 0;
+names=[];
+let = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+for k = 1:N
+    endIdx = coms(k)-2;
+    nameIn = {tline(strIdx:endIdx)};
+    names = [names; nameIn];
+    len = length(names);
+    if maxLen<len
+        maxLen = len;
+    end
+    strIdx = coms(k)+2;
+end
+nameIn = {tline(strIdx:end-1)};
+names = [names; nameIn];
+N = N+1;
+
+namesSorted = sortrows(names);
+finalVal = 0;
+for k=1:N
+    name = namesSorted{k};
+    nameLen = length(name);
+    letIdxSum = 0;
+    for j = 1:nameLen
+        letIdx = strfind(let,name(j));
+        letIdxSum = letIdxSum+letIdx;
+    end
+  
+    finalVal = finalVal + letIdxSum*k;
+end
+
+disp(finalVal)    
+
+end
